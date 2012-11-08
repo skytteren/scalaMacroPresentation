@@ -1,0 +1,133 @@
+<!DOCTYPE html>  
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Scala Macros</title>
+
+		<meta name="description" content="En introduksjon til funksjonell programmering">
+		<meta name="author" content="Stein Kåre Skytteren">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/sk.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/idea.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+</head>
+<body>
+	<div class="reveal">
+		<div class="state-background"></div>
+			<div class="slides"> 
+				<section>
+					<h1 class="singleline head">Scala Marcos</h1>
+					<p>SIP-16 - Self-cleaning Macros</p>
+				</section>
+				<section>
+					<h1 class="head">Stein Kåre Skytteren</h1>
+					<p>@skskytteren</p>
+					<p>@scalaBin</p>
+				</section>
+				<section>
+					<h1 class="singleline head">Scala Marcos</h1>
+					<p>SIP-16 - Self-cleaning Macros</p>
+				</section>
+				<section>
+					<h1>Excel</h1>
+				</section>
+				<section>
+					<h1>C</h1>
+					<section>
+						<h2>#define</h2>
+					</section>
+					<section>
+						<code>
+#define BUFFER_SIZE 1024
+foo = (char *) malloc (BUFFER_SIZE);
+						</code>
+						<code>
+foo = (char *) malloc (1024);
+						</code>
+					</section>
+				</section>
+				<section>
+					<h1>Lisp</h1>
+					<section>
+						<h2>(defmacro .... )</h2>
+					</section>
+					<section>
+						<code>
+(defmacro Square (X) 
+  '(* ,X ,X))
+  					</code>
+					</section>
+					<section>
+						<h2>defmacro &lt; defun</h2>
+					</section>
+					<section>
+						<h2>Fordel</h2>
+						<p>Bestemme når man skal evaluere</p>
+					</section>
+					<section>
+						<h2>Problem</h2>
+						<p>Uhygenisk - navne kræsj innenfor macro'en</p>
+					</section>
+				</section>
+				<section>
+					<h1>Scala</h1>
+					<section</section>
+					<section></section>
+				</section>
+			</div>
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.pack.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				]
+			});
+
+		</script>
+</body>
+</html>
