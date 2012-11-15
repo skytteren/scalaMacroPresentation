@@ -6,7 +6,7 @@
 
 		<title>Scala Macros</title>
 
-		<meta name="description" content="En introduksjon til funksjonell programmering">
+		<meta name="description" content="En introduksjon til Scala Marcos">
 		<meta name="author" content="Stein Kåre Skytteren">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,42 +56,120 @@
 						<h2>#define</h2>
 					</section>
 					<section>
-						<code>
+						<pre><code>
 #define BUFFER_SIZE 1024
 foo = (char *) malloc (BUFFER_SIZE);
-						</code>
-						<code>
+						</code></pre>
+						=>
+						<pre><code>
 foo = (char *) malloc (1024);
-						</code>
+						</code></pre>
 					</section>
 				</section>
 				<section>
 					<h1>Lisp</h1>
 					<section>
-						<h2>(defmacro .... )</h2>
+						<h2><code>(defmacro .... )</code></h2>
 					</section>
 					<section>
-						<code>
+						<pre><code>
 (defmacro Square (X) 
   '(* ,X ,X))
-  					</code>
+  					</code></pre>
 					</section>
 					<section>
-						<h2>defmacro &lt; defun</h2>
+						<h2>defun &gt; defmacro</h2>
 					</section>
 					<section>
-						<h2>Fordel</h2>
-						<p>Bestemme når man skal evaluere</p>
+						<h2>+</h2>
+						<p>Bestemme når man skal evaluere input</p>
 					</section>
 					<section>
-						<h2>Problem</h2>
+						<h2>-</h2>
 						<p>Uhygenisk - navne kræsj innenfor macro'en</p>
 					</section>
 				</section>
 				<section>
-					<h1>Scala</h1>
-					<section</section>
+					<h1>Scala Macro</h1>
+				</section>
+				<section>
+					<h1>Reaksjoner</h1>
 					<section></section>
+					<section>
+						<q>Oh God Why?</q>
+					</section>
+					<section>
+						<q>Scala macros might be a solution to a problem nobody has</q>
+					</section>
+					<section>
+						<q>Macros are bad, but in order to understand why they are bad it helps if you are not a language nut.</q>
+					</section>
+				</section>
+				<section>
+					<h1>Rasjonale</h1>
+					<q>I believe that in the long run macros can be a simplifying factor.</q> - Martin Odersky
+				</section>
+				<section>
+					<h1>Use Case</h1>
+					<section></section>
+					<section>
+						<h2>SQL compile time check</h2>
+					</section>
+					<section>
+						<h2>Vis orginal kode</h2>
+					</section>
+					<section>
+						<h2>Generere dynamisk kode</h2>
+					</section>
+				</section>
+				<section>
+					<h1>Implementasjon</h1>
+					<pre><code class="scala">
+import language.experimental.macros
+import scala.reflect.makro.Context
+
+<span class="fragment">def myMacro(input: String): String = macro myMacroImpl</span>
+<span class="fragment">def myMacroImpl(c: Context)(input: c.Expr[String]): c.Expr[String] = ??? //impl</span>
+					</code></pre>
+				</section>
+				<section>
+					<h1>Example</h1>
+				</section>
+				<section>
+					<h1>assert</h1>
+					<pre><code class="scala">
+def assert1(cond: Boolean): Unit = macro assert1Impl
+
+def assert1Impl(c: Context)(cond: c.Expr[Boolean]) = {
+	import c.universe._
+	val condCode = c.Expr[String](Literal(Constant(show(cond.tree))))
+	c.universe.reify {
+		assert(cond.splice, condCode.splice)
+		()
+ 	}
+}
+</code></pre>
+					<p>ref: <a href="https://github.com/retronym/macrocosm">https://github.com/retronym/macrocosm</a></p>
+				</section>
+				<section>
+					<h1>Future</h1>
+					<section></section>
+					<section>
+						<h2>Type Marco</h2>
+					</section>
+					<section>
+						<h2>Annotation Macro</h2>
+					</section>
+				</section>
+				<section>
+					<h1>Lære mer?</h1>
+					<p><a href="http://scalamacros.org">scalamacros.org</a></p>
+				</section>
+				<section>
+					<h1>∑</h1>
+				</section>
+				<section>
+					<h1>?</h1>
 				</section>
 			</div>
 			<!-- The navigational controls UI -->
